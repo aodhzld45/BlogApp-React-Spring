@@ -98,8 +98,12 @@
 
 <h2>기능 상세 설계</h2>
 <pre>
-  ===================================
+
+===================================
+
 1. 로그인 기능 (signIn)
+
+===================================
 
 - request 
 {
@@ -138,9 +142,9 @@
 } 
 ===================================
 
-===================================
 2. 회원가입 기능 (signUp)
 
+===================================
 - request
 {
     email : String,
@@ -180,9 +184,9 @@
 } 
 ===================================
 
-===================================
 3. 주간 Top 3 게시물 (WeeklyTop3List)
 
+===================================
 - response
 
 성공 (Success) 
@@ -207,7 +211,7 @@ boardListItem[] 배열 구조 -
     writerProfileImage : String
 }
 
-실패
+실패 (Failure)
 
 데이터 베이스 에러
 
@@ -218,9 +222,9 @@ boardListItem[] 배열 구조 -
 } 
 ===================================
 
-===================================
 4. 최근 게시물 리스트 (currentList)
 
+===================================
 - response
 
 성공 (Success)
@@ -245,7 +249,7 @@ boardListItem[] 배열 구조 -
     writerProfileImage : String
 }
 
-실패
+실패 (Failure)
 
 데이터 베이스 에러
 
@@ -257,9 +261,30 @@ boardListItem[] 배열 구조 -
 
 ===================================
 
-===================================
-
 5. 인기 검색어 리스트 (popularWordList)
+
+===================================
+-response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success",
+    popularWordList: String[]
+}
+
+실패 (Failure)
+
+데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
 
 6. 검색 게시물 리스트 (searchList)
 
@@ -288,7 +313,7 @@ boardListItem[] 배열 구조 -
     writerProfileImage : String
 }
 
-실패
+실패 (Failure)
 
 데이터 베이스 에러
 
@@ -301,6 +326,29 @@ boardListItem[] 배열 구조 -
 
 7. 관련 검색어 리스트 (relativeWordList)
 
+===================================
+
+-response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success",
+    relativeWordList: String[]
+}
+
+실패 (Failure)
+
+데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
 8. 게시물 상세 보기 (boardDetail)
 
 9. 좋아요 리스트 (favoriteList)
@@ -319,10 +367,47 @@ boardListItem[] 배열 구조 -
 
 16. 유저 정보 불러오기 (GetUser)
 
+===================================
+
 17. 특정 유저 게시물 리스트 (userBoardList)
 
+===================================
+- response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code : "SU",
+    message : "Success",
+    searchList: boardListItem[]
+}
+
+boardListItem[] 배열 구조 -
+{
+    boardNumber : int,
+    title : stirng,
+    content : string,
+    favoriteCount : int,
+    commentCount : int,
+    viewCount : int,
+    writeDatetime : String,
+    writerNickname : String,
+    writerProfileImage : String
+}
+
+실패 (Failure)
+
+데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
 18. 파일 업로드 (fileUpload)
 
 19. 파일 불러오기 (getFile)
-  
+
 </pre>
