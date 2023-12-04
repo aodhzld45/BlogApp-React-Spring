@@ -1,19 +1,3 @@
-  <style >
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
-
 <h1> React(Front) & Spring Boot(Back) + MySQL(DB) </h1>
 <pre>
     React(Front) & Spring Boot(Back) + MySQL(DB) 게시판형 블로그 만들기
