@@ -1,4 +1,4 @@
-  <style>
+  <style >
     table {
       width: 100%;
       border-collapse: collapse;
@@ -20,7 +20,11 @@
 </pre>
 
 <h2>게시판 기능 목록</h2>
-<table>
+<table style= {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }>
     <thead>
       <tr>
         <th>기능</th>
