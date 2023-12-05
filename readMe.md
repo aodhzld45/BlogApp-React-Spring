@@ -109,7 +109,7 @@
 
 <hr />
 
-<h3>1. 로그인 기능 (signIn) API URL - /api/v1/auth/sign-in</h3>
+<h3>1. 로그인 기능 (signIn) / Method : POST / API URL - /api/v1/auth/sign-in</h3>
 
 <hr />
 
@@ -150,7 +150,7 @@
 } 
 <hr />
 
-2. 회원가입 기능 (signUp)
+<h3>2. 회원가입 기능 (signUp) / API URL - /api/v1/auth/sign-up</h3>
 
 <hr />
 
@@ -193,7 +193,7 @@
 } 
 <hr />
 
-3. 주간 Top 3 게시물 (WeeklyTop3List)
+<h3>3. 주간 Top 3 게시물 (WeeklyTop3List) / API URL - /api/v1/board/top-3</h3>
 
 <hr />
 
@@ -233,7 +233,8 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-4. 최근 게시물 리스트 (currentList)
+<h3>4. 최근 게시물 리스트 (currentList) / API URL - /api/v1/board/current-list/{pageNumber}
+</h3>
 
 <hr />
 - response
@@ -298,7 +299,7 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-6. 검색 게시물 리스트 (searchList)
+<h3>6. 검색 게시물 리스트 (searchList) / API URL - /api/v1/board/search-list/{searchWord}</h3>
 
 <hr />
 
@@ -364,7 +365,7 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-8. 게시물 상세 보기 (boardDetail)
+<h3>8. 게시물 상세 보기 (boardDetail) / API URL - /api/v1/board/{boardNumber}</h3>
 
 <hr />
 
@@ -397,7 +398,7 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-9. 좋아요 리스트 (favoriteList)
+<h3>9. 좋아요 리스트 (favoriteList) / API URL - /api/v1/board/{boardNumber}/favorite-list</h3>
 
 <hr />
 
@@ -459,7 +460,7 @@ favoriteListItem[] 구조
 } 
 <hr />
 
-11. 댓글 리스트 (commentList)
+<h3>11. 댓글 리스트 (commentList) / API URL - /api/v1/board/{boardNumber}/comment-list</h3>
 
 <hr />
 
@@ -736,7 +737,7 @@ commentListItem[] 배열 구조
 } 
 <hr />
 
-17. 특정 유저 게시물 리스트 (userBoardList)
+<h3>17. 특정 유저 게시물 리스트 (userBoardList) / API URL - /api/v1/board/user-board-list/{email}</h3>
 
 <hr />
 
