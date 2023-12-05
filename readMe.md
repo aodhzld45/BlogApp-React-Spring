@@ -96,7 +96,7 @@
     </tbody>
   </table>
 
-<h2>기능 상세 설계</h2>
+<h2>Back-End InterFace API 명세</h2>
 <pre>
 
 ===================================
@@ -145,6 +145,7 @@
 2. 회원가입 기능 (signUp)
 
 ===================================
+
 - request
 {
     email : String,
@@ -187,6 +188,7 @@
 3. 주간 Top 3 게시물 (WeeklyTop3List)
 
 ===================================
+
 - response
 
 성공 (Success) 
@@ -206,6 +208,7 @@ boardListItem[] 배열 구조 -
     favoriteCount : int,
     commentCount : int,
     viewCount : int,
+    boardTitleImage : String,
     writeDatetime : String,
     writerNickname : String,
     writerProfileImage : String
@@ -244,6 +247,7 @@ boardListItem[] 배열 구조 -
     favoriteCount : int,
     commentCount : int,
     viewCount : int,
+    boardTitleImage : String,
     writeDatetime : String,
     writerNickname : String,
     writerProfileImage : String
@@ -264,6 +268,7 @@ boardListItem[] 배열 구조 -
 5. 인기 검색어 리스트 (popularWordList)
 
 ===================================
+
 -response
 
 성공 (Success)
@@ -289,6 +294,7 @@ boardListItem[] 배열 구조 -
 6. 검색 게시물 리스트 (searchList)
 
 ===================================
+
 - response
 
 성공 (Success)
@@ -308,6 +314,7 @@ boardListItem[] 배열 구조 -
     favoriteCount : int,
     commentCount : int,
     viewCount : int,
+    boardTitleImage : String,
     writeDatetime : String,
     writerNickname : String,
     writerProfileImage : String
@@ -349,29 +356,347 @@ boardListItem[] 배열 구조 -
     message : "Database Error."
 } 
 ===================================
+
 8. 게시물 상세 보기 (boardDetail)
+
+===================================
+
+-response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success",
+    boardNumber : int,
+    title : Stirng,
+    content : String,
+    boardImage : String,
+    writerEmail : String,
+    writeDatetime : String,
+    writerNickname : String,
+    writerProfileImage : String
+}
+
+실패 (Failure)
+
+존재하지 않는 게시물
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NB",
+    message : "NO Existed Board Number",
+} 
+===================================
 
 9. 좋아요 리스트 (favoriteList)
 
+===================================
+
+-response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success",
+    favoriteList: favoriteListItem[]
+}
+
+favoriteListItem[] 구조 
+{
+    email : String,
+    nickname : String,
+    profileImg : String
+}
+
+실패 (Failure)
+
+데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
+
 10. 좋아요 기능 (favorite)
+
+===================================
+- request
+{
+    boardNumber : int
+}
+
+- response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success"
+}
+
+실패 (Failure)
+
+데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
 
 11. 댓글 리스트 (commentList)
 
-12. 댓글 쓰기 (Post Comment)
+===================================
+
+- response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success",
+    commentList : commentListItem[]
+}
+
+commentListItem[] 배열 구조
+{
+    email : String,
+    nickname : String,
+    writeDatetime : String,
+    content : String
+}
+
+실패 (Failure)
+
+데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
+
+12. 댓글 쓰기 (postComment)
+
+===================================
+
+- request
+
+{
+    content: String
+}
+
+- response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success"
+}
+
+실패 (Failure)
+
+1. 존재하지 않는 게시물
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NB",
+    message : "NO Existed Board Number"
+} 
+
+2. 존재하지 않는 유저
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NU",
+    message : "NO Existed User..."
+} 
+
+3. 데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
 
 13. 게시물 삭제 (boardDelete)
 
-14. 게시물 작성 (boardWrite)
+===================================
+
+- response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success"
+}
+
+실패 (Failure)
+
+1. 존재하지 않는 게시물
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NB",
+    message : "NO Existed Board Number"
+} 
+2. 존재하지 않는 유저
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NU",
+    message : "NO Existed User..."
+} 
+
+3. 권한 없음
+
+- HTTP status - 403 (forbidden)
+{
+    code : "NP",
+    message : "NO Permission..."
+}
+
+4. 데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
+
+14. 게시물 작성 (boardWrite) * 필수값
+
+===================================
+
+- request 
+{
+    *title : String,
+    *content : String,
+    boardImageList : String,
+}
+
+- response 
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success"
+}
+
+실패 (Failure)
+
+1. 존재하지 않는 게시물
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NB",
+    message : "NO Existed Board Number"
+} 
+2. 존재하지 않는 유저
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NU",
+    message : "NO Existed User..."
+} 
+
+3. 권한 없음
+
+- HTTP status - 403 (forbidden)
+{
+    code : "NP",
+    message : "NO Permission..."
+}
+
+4. 데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
 
 15. 게시물 수정 (boardUpdate)
+
+===================================
+
+- request 
+
+{
+    *title : String,
+    *content : String,
+    boardImageList : String,
+}
+
+- response 
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code: "SU",
+    message : "Success"
+}
+
+실패 (Failure)
+
+1. 존재하지 않는 게시물
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NB",
+    message : "NO Existed Board Number"
+} 
+2. 존재하지 않는 유저
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NU",
+    message : "NO Existed User..."
+} 
+
+3. 권한 없음
+
+- HTTP status - 403 (forbidden)
+{
+    code : "NP",
+    message : "NO Permission..."
+}
+
+4. 데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+
+===================================
 
 16. 유저 정보 불러오기 (GetUser)
 
 ===================================
 
-17. 특정 유저 게시물 리스트 (userBoardList)
-
-===================================
 - response
 
 성공 (Success)
@@ -380,7 +705,43 @@ boardListItem[] 배열 구조 -
 {
     code : "SU",
     message : "Success",
-    searchList: boardListItem[]
+    email: String,
+    nickname: String,
+    profileImg : String
+}
+
+실패 (Failure)
+
+1. 존재하지 않는 유저
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NU",
+    message : "NO Existed User..."
+} 
+
+2. 데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
+
+17. 특정 유저 게시물 리스트 (userBoardList)
+
+===================================
+
+- response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code : "SU",
+    message : "Success",
+    boardList: boardListItem[]
 }
 
 boardListItem[] 배열 구조 -
@@ -406,8 +767,93 @@ boardListItem[] 배열 구조 -
     message : "Database Error."
 } 
 ===================================
-18. 파일 업로드 (fileUpload)
 
-19. 파일 불러오기 (getFile)
+18. 닉네임 수정 (patchNickname)
+
+===================================
+
+- request 
+{
+    nickname : String
+}
+
+- response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code : "SU",
+    message : "Success",
+}
+
+실패 (Failure)
+
+1. 존재하지 않는 유저
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NU",
+    message : "NO Existed User..."
+} 
+
+2. 데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
+
+19. 프로필 이미지 수정 (patchProFileImage)
+
+===================================
+
+- request 
+{
+    profileImage : String
+}
+
+- response
+
+성공 (Success)
+
+- HTTP status - 200 (ok)
+{
+    code : "SU",
+    message : "Success",
+}
+
+실패 (Failure)
+
+1. 존재하지 않는 유저
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NU",
+    message : "NO Existed User..."
+} 
+
+2. 데이터 베이스 에러
+
+- HTTP status - 500 (Internal Server Error)
+{
+    code : "DE",
+    message : "Database Error."
+} 
+===================================
+
+20. 파일 업로드 (fileUpload)
+
+===================================
+
+===================================
+
+21. 파일 불러오기 (getFile)
+
+===================================
+
+===================================
 
 </pre>
