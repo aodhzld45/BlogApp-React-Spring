@@ -150,7 +150,7 @@
 } 
 <hr />
 
-<h3>2. 회원가입 기능 (signUp) / API URL - /api/v1/auth/sign-up</h3>
+<h3>2. 회원가입 기능 (signUp) / Method : POST / API URL - /api/v1/auth/sign-up</h3>
 
 <hr />
 
@@ -193,7 +193,7 @@
 } 
 <hr />
 
-<h3>3. 주간 Top 3 게시물 (WeeklyTop3List) / API URL - /api/v1/board/top-3</h3>
+<h3>3. 주간 Top 3 게시물 (WeeklyTop3List) / Method : GET / API URL - /api/v1/board/top-3</h3>
 
 <hr />
 
@@ -233,8 +233,7 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-<h3>4. 최근 게시물 리스트 (currentList) / API URL - /api/v1/board/current-list/{pageNumber}
-</h3>
+<h3>4. 최근 게시물 리스트 (currentList) / Method : GET / API URL - /api/v1/board/current-list/{pageNumber}</h3>
 
 <hr />
 - response
@@ -273,7 +272,7 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-5. 인기 검색어 리스트 (popularWordList)
+<h3>5. 인기 검색어 리스트 (popularWordList) / Method : GET / API URL - /api/v1/search/popular-list</h3>
 
 <hr />
 
@@ -299,7 +298,7 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-<h3>6. 검색 게시물 리스트 (searchList) / API URL - /api/v1/board/search-list/{searchWord}</h3>
+<h3>6. 검색 게시물 리스트 (searchList) / Method : GET / API URL - /api/v1/board/search-list/{searchWord}</h3>
 
 <hr />
 
@@ -339,7 +338,7 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-7. 관련 검색어 리스트 (relativeWordList)
+<h3>7. 관련 검색어 리스트 (relativeWordList) / Method : GET / API URL - /api/v1/search/{searchWord}/relation-list</h3>
 
 <hr />
 
@@ -365,7 +364,7 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-<h3>8. 게시물 상세 보기 (boardDetail) / API URL - /api/v1/board/{boardNumber}</h3>
+<h3>8. 게시물 상세 보기 (boardDetail) / Method : GET / API URL - /api/v1/board/{boardNumber}</h3>
 
 <hr />
 
@@ -398,7 +397,7 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-<h3>9. 좋아요 리스트 (favoriteList) / API URL - /api/v1/board/{boardNumber}/favorite-list</h3>
+<h3>9. 좋아요 리스트 (favoriteList) / Method : GET / API URL - /api/v1/board/{boardNumber}/favorite-list</h3>
 
 <hr />
 
@@ -431,9 +430,15 @@ favoriteListItem[] 구조
 } 
 <hr />
 
-10. 좋아요 기능 (favorite)
+<h3>10. 좋아요 기능 (favorite) / Method : GET / API URL - /api/v1/board/{boardNumber}/favorite</h3>
 
 <hr />
+- Header 
+{
+    Authorization : "Bearer Token"
+
+}
+
 - request
 {
     boardNumber : int
@@ -460,7 +465,7 @@ favoriteListItem[] 구조
 } 
 <hr />
 
-<h3>11. 댓글 리스트 (commentList) / API URL - /api/v1/board/{boardNumber}/comment-list</h3>
+<h3>11. 댓글 리스트 (commentList) / Method : POST / API URL - /api/v1/board/{boardNumber}/comment-list</h3>
 
 <hr />
 
@@ -541,9 +546,14 @@ commentListItem[] 배열 구조
 } 
 <hr />
 
-13. 게시물 삭제 (boardDelete)
+<h3>13. 게시물 삭제 (boardDelete) / Method : DELETE / API URL - /api/v1/board/{boardNumber}</h3>
 
 <hr />
+- Header 
+{
+    Authorization : "Bearer Token"
+
+}
 
 - response
 
@@ -589,9 +599,15 @@ commentListItem[] 배열 구조
 } 
 <hr />
 
-14. 게시물 작성 (boardWrite) * 필수값
+<h3>14. 게시물 작성 (boardWrite) * 필수값 / Method : POST / API URL - /api/v1/board</h3>
 
 <hr />
+
+- Header 
+{
+    Authorization : "Bearer Token"
+
+}
 
 - request 
 {
@@ -644,9 +660,15 @@ commentListItem[] 배열 구조
 } 
 <hr />
 
-15. 게시물 수정 (boardUpdate)
+<h3>15. 게시물 수정 (boardUpdate) / Method : PATCH / API URL - /api/v1/board/{boardNumber}</h3>
 
 <hr />
+
+- Header 
+{
+    Authorization : "Bearer Token"
+
+}
 
 - request 
 
@@ -701,9 +723,14 @@ commentListItem[] 배열 구조
 
 <hr />
 
-16. 유저 정보 불러오기 (GetUser)
+<h3>16. 유저 정보 불러오기 (GetUser) / Method : GET / API URL - /api/v1/user</h3>
 
 <hr />
+- Header 
+{
+    Authorization : "Bearer Token"
+
+}
 
 - response
 
@@ -776,10 +803,14 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-18. 닉네임 수정 (patchNickname)
+<h3>18. 닉네임 수정 (patchNickname / Method : PATCH / API URL - /api/v1/user/{nickName}</h3>
 
 <hr />
+- Header 
+{
+    Authorization : "Bearer Token"
 
+}
 - request 
 {
     nickname : String
@@ -814,9 +845,14 @@ boardListItem[] 배열 구조 -
 } 
 <hr />
 
-19. 프로필 이미지 수정 (patchProFileImage)
+<h3>19. 프로필 이미지 수정 (patchProFileImage) / Method : PATCH / API URL - /api/v1/user/profile-image</h3>
 
 <hr />
+- Header 
+{
+    Authorization : "Bearer Token"
+
+}
 
 - request 
 {
