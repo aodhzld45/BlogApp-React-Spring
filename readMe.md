@@ -111,7 +111,7 @@
 
 1. 로그인 기능 (signIn)
 
-===================================
+<hr />
 
 - request 
 {
@@ -148,11 +148,11 @@
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 2. 회원가입 기능 (signUp)
 
-===================================
+<hr />
 
 - request
 {
@@ -191,11 +191,11 @@
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 3. 주간 Top 3 게시물 (WeeklyTop3List)
 
-===================================
+<hr />
 
 - response
 
@@ -231,11 +231,11 @@ boardListItem[] 배열 구조 -
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 4. 최근 게시물 리스트 (currentList)
 
-===================================
+<hr />
 - response
 
 성공 (Success)
@@ -270,12 +270,11 @@ boardListItem[] 배열 구조 -
     code : "DE",
     message : "Database Error."
 } 
-
-===================================
+<hr />
 
 5. 인기 검색어 리스트 (popularWordList)
 
-===================================
+<hr />
 
 -response
 
@@ -297,11 +296,11 @@ boardListItem[] 배열 구조 -
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 6. 검색 게시물 리스트 (searchList)
 
-===================================
+<hr />
 
 - response
 
@@ -337,11 +336,11 @@ boardListItem[] 배열 구조 -
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 7. 관련 검색어 리스트 (relativeWordList)
 
-===================================
+<hr />
 
 -response
 
@@ -363,11 +362,11 @@ boardListItem[] 배열 구조 -
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 8. 게시물 상세 보기 (boardDetail)
 
-===================================
+<hr />
 
 -response
 
@@ -396,11 +395,11 @@ boardListItem[] 배열 구조 -
     code : "NB",
     message : "NO Existed Board Number",
 } 
-===================================
+<hr />
 
 9. 좋아요 리스트 (favoriteList)
 
-===================================
+<hr />
 
 -response
 
@@ -429,11 +428,11 @@ favoriteListItem[] 구조
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 10. 좋아요 기능 (favorite)
 
-===================================
+<hr />
 - request
 {
     boardNumber : int
@@ -458,11 +457,11 @@ favoriteListItem[] 구조
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 11. 댓글 리스트 (commentList)
 
-===================================
+<hr />
 
 - response
 
@@ -492,11 +491,11 @@ commentListItem[] 배열 구조
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 12. 댓글 쓰기 (postComment)
 
-===================================
+<hr />
 
 - request
 
@@ -539,11 +538,11 @@ commentListItem[] 배열 구조
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 13. 게시물 삭제 (boardDelete)
 
-===================================
+<hr />
 
 - response
 
@@ -587,11 +586,11 @@ commentListItem[] 배열 구조
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 14. 게시물 작성 (boardWrite) * 필수값
 
-===================================
+<hr />
 
 - request 
 {
@@ -642,11 +641,11 @@ commentListItem[] 배열 구조
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 15. 게시물 수정 (boardUpdate)
 
-===================================
+<hr />
 
 - request 
 
@@ -699,11 +698,11 @@ commentListItem[] 배열 구조
     message : "Database Error."
 } 
 
-===================================
+<hr />
 
 16. 유저 정보 불러오기 (GetUser)
 
-===================================
+<hr />
 
 - response
 
@@ -735,11 +734,11 @@ commentListItem[] 배열 구조
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 17. 특정 유저 게시물 리스트 (userBoardList)
 
-===================================
+<hr />
 
 - response
 
@@ -774,11 +773,11 @@ boardListItem[] 배열 구조 -
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 18. 닉네임 수정 (patchNickname)
 
-===================================
+<hr />
 
 - request 
 {
@@ -812,11 +811,11 @@ boardListItem[] 배열 구조 -
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 19. 프로필 이미지 수정 (patchProFileImage)
 
-===================================
+<hr />
 
 - request 
 {
@@ -850,18 +849,18 @@ boardListItem[] 배열 구조 -
     code : "DE",
     message : "Database Error."
 } 
-===================================
+<hr />
 
 20. 파일 업로드 (fileUpload)
 
-===================================
+<hr />
 
-===================================
+<hr />
 
 21. 파일 불러오기 (getFile)
 
-===================================
+<hr />
 
-===================================
+<hr />
 
 </pre>
