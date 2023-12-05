@@ -465,7 +465,7 @@ favoriteListItem[] 구조
 } 
 <hr />
 
-<h3>11. 댓글 리스트 (commentList) / Method : POST / API URL - /api/v1/board/{boardNumber}/comment-list</h3>
+<h3>11. 댓글 리스트 (commentList) / Method : GET / API URL - /api/v1/board/{boardNumber}/comment-list</h3>
 
 <hr />
 
