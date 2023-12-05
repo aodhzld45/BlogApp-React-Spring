@@ -764,7 +764,7 @@ commentListItem[] 배열 구조
 } 
 <hr />
 
-<h3>17. 특정 유저 게시물 리스트 (userBoardList) / API URL - /api/v1/board/user-board-list/{email}</h3>
+<h3>17. 특정 유저 게시물 리스트 (userBoardList) / Method : GET / API URL - /api/v1/board/user-board-list/{email}</h3>
 
 <hr />
 
