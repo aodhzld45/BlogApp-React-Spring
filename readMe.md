@@ -109,8 +109,7 @@
 
 <hr />
 
-1. 로그인 기능 (signIn)
-<h3>API URL - /api/v1/auth/sign-in</h3>
+1. 로그인 기능 (signIn) <h3>API URL - /api/v1/auth/sign-in</h3>
 
 <hr />
 
