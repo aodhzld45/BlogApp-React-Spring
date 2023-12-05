@@ -499,9 +499,14 @@ commentListItem[] 배열 구조
 } 
 <hr />
 
-12. 댓글 쓰기 (postComment)
+<h3>12. 댓글 쓰기 (postComment) / Method : POST / API URL - /api/v1/board/{boardNumber}/comment </h3>
 
 <hr />
+- Header 
+{
+    Authorization : "Bearer Token"
+
+}
 
 - request
 
