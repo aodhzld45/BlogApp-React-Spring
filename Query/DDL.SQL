@@ -90,7 +90,7 @@ ADD CONSTRAINT FK_board_TO_comment
 FOREIGN KEY (board_number)
 REFERENCES board (board_number);
 
---반복되는 SELECT VIEW 생성
+--반복되는 SELECT board_list_view VIEW 생성
 CREATE VIEW board_list_view AS
 SELECT 
     B.board_number AS board_number,
