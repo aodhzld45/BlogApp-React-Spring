@@ -90,7 +90,7 @@ ADD CONSTRAINT FK_board_TO_comment
 FOREIGN KEY (board_number)
 REFERENCES board (board_number);
 
---반복되는 SELECT board_list_view VIEW 생성
+--반복되는 SELECT VIEW 생성
 CREATE VIEW board_list_view AS
 SELECT 
     B.board_number AS board_number,
@@ -100,11 +100,13 @@ SELECT
     B.view_count AS view_count,
     B.favorite_count AS favorite_count,
     B.comment_count AS comment_count,
+    B.writer_email AS writer_email,
     B.write_datetime AS write_datetime,
     U.nickname AS nickname,
     U.profile_image AS profile_image
 FROM board AS B
-INNER JOIN `user` AS U 
-ON B.writer_email = U.email;
+INNER JOIN `user` AS U ON B.writer_email = U.email
+ORDER BY write_datetime
+ 
 
 
