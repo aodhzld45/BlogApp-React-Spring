@@ -1,6 +1,8 @@
 <h1> React(Front) & Spring Boot(Back) + MySQL(DB) </h1>
 <pre>
     React(Front) & Spring Boot(Back) + MySQL(DB) 게시판형 블로그 만들기
+
+    ERD - VS CODE ERD Edtior extension 설치 필요 (board.vuerd.json파일)
 </pre>
 
 <h2>게시판 기능 목록</h2>
