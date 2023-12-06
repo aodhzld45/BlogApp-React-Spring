@@ -90,4 +90,3 @@ ADD CONSTRAINT FK_board_TO_comment
 FOREIGN KEY (board_number)
 REFERENCES board (board_number);
 
-
