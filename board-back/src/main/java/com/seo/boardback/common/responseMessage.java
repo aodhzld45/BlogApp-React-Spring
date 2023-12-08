@@ -1,7 +1,7 @@
 package com.seo.boardback.common;
 
 // 응답(response Message 정의)
-public interface responseMessage {
+public interface ResponseMessage {
     // HTTP Status 200
     /* public static final*/ String SUCCESS = "Success."; 
 

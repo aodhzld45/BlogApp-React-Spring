@@ -1,7 +1,7 @@
 package com.seo.boardback.common;
 
 // 응답(response Code 정의)
-public interface responseCode {
+public interface ResponseCode {
     // HTTP Status 200
     /* public static final*/ String SUCCESS = "SU"; 
 
