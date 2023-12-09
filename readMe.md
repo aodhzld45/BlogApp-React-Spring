@@ -484,9 +484,9 @@ favoriteListItem[] 구조
 
 commentListItem[] 배열 구조
 {
-    email : String,
     nickname : String,
     writeDatetime : String,
+    profileImage : String ;
     content : String
 }
 
