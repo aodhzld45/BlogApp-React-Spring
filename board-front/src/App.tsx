@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import BoardItem from 'components/BoardItem';
 import Top3Item from 'components/Top3Item';
 import CommentItem from 'components/CommentItem';
 import { top3BoardListMock, latestBoardListMock, commentListMock, favoriteListMock  } from "mocks";
 import FavarioteItem from 'components/FavarioteItem';
+import InputBox from 'components/InputBox';
 
 
 function App() {
+
+  const [value, setValue] = useState<string>('');
+
+
   return (
     <>
     {/* BoardListMock */}
@@ -26,6 +31,10 @@ function App() {
     {/* favoriteListMock */}
     <div style={{display: 'flex', columnGap : '30px', rowGap : '20px' }}>
       {favoriteListMock.map(favoriteListItems => <FavarioteItem favoriteListItme={favoriteListItems} />)}
+    </div>
+
+    <div>
+    <InputBox label='이메일' type='text' placeholder='이메일 주소를 입력해주세요' value={value} error={true} setValue={setValue} message='에러메세지 테스트'/>
     </div>
 
 
