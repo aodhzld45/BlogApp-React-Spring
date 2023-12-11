@@ -3,7 +3,7 @@
 // private String profileImage;
 
 export default interface FavoriteListItem {
-    email : string,
+    // email : string,
     nickName : string,
     profileImage : string | null,
 

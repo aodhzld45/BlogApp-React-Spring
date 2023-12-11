@@ -3,16 +3,14 @@ import './style.css'
 import { CommentListItem } from 'types/interface'
 import defaultProfileImage from 'assets/image/default-profile-image.png';
 
-
 interface Props {
     commentListItem : CommentListItem
 }
 
-// properties
-
 //  Component : CommentListItem 컴포넌트
 export default function CommentItem({commentListItem} : Props) {
 
+// properties
 const {nickName, profileImage, writeDatetime, content} = commentListItem
 
 //  Rendering : 렌더링 부분
