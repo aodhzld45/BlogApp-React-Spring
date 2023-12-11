@@ -1,15 +1,26 @@
-.icon-button {
+.icon-box {
     width: 24px;
     height: 24px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-button {
     border-radius: 50% 50%;
+
+    width: 24px;
+    height: 24px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     cursor: pointer;
+}
 
+.icon-button:hover {
     background-color: rgba(0, 0, 0, 0.05);   
 }
 
@@ -31,4 +42,20 @@
 
 .expend-right-light-icon {
     background-image: url(assets/image/expand-right-light.png);
+}
+
+.logo-light-icon {
+    background-image: url(assets/image/logo-light.png);
+}
+
+.logo-chunsik {
+    background-image: url(assets/image/chunsik.jpg);
+}
+
+.git-icon {
+    background-image: url(assets/image/git.png);
+}
+
+.naver-blog-icon {
+    background-image: url(assets/image/naver-blog.png);
 }
