@@ -1006,9 +1006,12 @@ REFERENCES board (board_number);
 
 <hr />
 
-<h2>Router Dom Path 정의 </h2>
+</pre>
 
+<h2>Router Dom Path 정의 </h2>
+<pre>
 <hr />
+
 MAIN_PATH = () => '/';
 AUTH_PATH = () => '/auth';
 SEARCH_PATH = (searchWord : string) => `/search/${searchWord}`;
@@ -1017,10 +1020,10 @@ BOARD_PATH = () => '/board';
 BOARD_WRITE_PATH = () => 'write';
 BOARD_UPDATE_PATH = (boardNumber : string | number) => `update/${boardNumber}`;
 BOARD_DETAIL_PATH = (boardNumber : string | number) => `detail/${boardNumber}`;
+
 <hr />
 
 </pre>
-
 
 
 
