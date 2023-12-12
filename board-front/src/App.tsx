@@ -10,6 +10,16 @@ import Footer from 'layouts/Footer';
 import { Route, Routes } from 'react-router-dom';
 import Main from 'views/Main';
 import Authentication from 'views/Authentication';
+import User from 'views/User';
+import BoardDetail from 'views/Board/Detail';
+import BoardWrite from 'views/Board/Write';
+import BoardUpdate from 'views/Board/Update';
+import Container from 'layouts/Container';
+import {
+  MAIN_PATH, AUTH_PATH, SEARCH_PATH, USER_PATH,
+  BOARD_PATH, BOARD_WRITE_PATH, BOARD_UPDATE_PATH, BOARD_DETAIL_PATH
+ } from 'constant';
+import Search from 'views/Search';
 
 // Component : Application 컴포넌트
 // description : 메인화면 '/' - main
@@ -53,13 +63,29 @@ function App() {
     <InputBox label='이메일' type='text' placeholder='이메일 주소를 입력해주세요' value={value} error={true} setValue={setValue} message='에러메세지 테스트'/>
     </div>
 
-    <div>
+    {/* <div>
     <Footer />  
-    </div>
+    </div> */}
 
     <Routes>
-      <Route path='/' element={<Main />} />
-      <Route path='/auth' element={<Authentication />} />
+
+      {/* Layout 설정 부분 */}
+    <Route element={<Container />}>
+      <Route path={MAIN_PATH()} element={<Main />} />
+      <Route path={AUTH_PATH()} element={<Authentication />} />
+      <Route path={SEARCH_PATH(':searchWord')} element={<Search />}  />
+      <Route path={USER_PATH(':userEmail')} element={<User />} />
+      <Route path={BOARD_PATH()}>
+        <Route path={BOARD_WRITE_PATH()} element={<BoardWrite />} />
+        <Route path={BOARD_DETAIL_PATH(':boardNumber')} element={<BoardDetail />} />
+        <Route path={BOARD_UPDATE_PATH(':boardNumber')} element={<BoardUpdate />} />
+      </Route>
+
+      <Route path='*' element={<h1>404 NOT FOUND 페이지를 찾을 수 없습니다.</h1>} />
+
+    </Route>
+
+
     </Routes>
 
 
