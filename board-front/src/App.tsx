@@ -7,15 +7,29 @@ import { top3BoardListMock, latestBoardListMock, commentListMock, favoriteListMo
 import FavarioteItem from 'components/FavarioteItem';
 import InputBox from 'components/InputBox';
 import Footer from 'layouts/Footer';
+import { Route, Routes } from 'react-router-dom';
+import Main from 'views/Main';
+import Authentication from 'views/Authentication';
 
+// Component : Application 컴포넌트
+// description : 메인화면 '/' - main
+// description : 인증 - 로그인 / 회원가입 화면 '/auth' Authenticator
+// description : 게시물 상세 화면 '/board/detail' BoardDetail
+// description : 게시물 작성 화면 '/board/write' BoardWrite
+// description : 게시물 수정 화면 '/board/update' BoardUpdate
+// description : 검색 화면 '/search/searchWord' Search
+// description : 유저 페이지 '/user/userEmail' User
 
 function App() {
 
   const [value, setValue] = useState<string>('');
 
 
+// Reder : Application rendering
   return (
+
     <>
+
     {/* BoardListMock */}
     {/* {latestBoardListMock.map(boardListItems =>   <BoardItem  boardListItem={boardListItems}/>)} */}
 
@@ -42,6 +56,11 @@ function App() {
     <div>
     <Footer />  
     </div>
+
+    <Routes>
+      <Route path='/' element={<Main />} />
+      <Route path='/auth' element={<Authentication />} />
+    </Routes>
 
 
     </>
