@@ -14,6 +14,8 @@
 
 
 body {
+  min-width: 1440px;
+
   margin: 0;
   font-family: 'Pretendard-Regular';
   -webkit-font-smoothing: antialiased;
