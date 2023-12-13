@@ -3,9 +3,14 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { AUTH_PATH, MAIN_PATH, SEARCH_PATH, USER_PATH } from 'constant';
 import { useState, ChangeEvent,KeyboardEvent, useRef, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import { useLoginUserStore } from 'stores';
 
 // Component : 헤더 화면 (Header) 컴포넌트
 export default function Header() {
+
+// state : 로그인 유저 상태값 관리
+const {loginUser, setLoginUser, resetLoginUser} = useLoginUserStore();
+
 // state : 쿠키(Cookie) 상태값 관리
 const [cookie, setCookie] = useCookies();
 
@@ -87,11 +92,17 @@ if(!searchStatus)
 
 /* ===== 로그인 또는 마이페이지 버튼 컴포넌트 LoginMyPageButton ===== */
 // Component : 로그인 또는 마이페이지 버튼 컴포넌트 
-const LoginMyPageButton = () => {
+const MyPageButton = () => {
+
+// state : userEmail pathValiable 상태값 관리 -> url에 태워보낼 파라미터 이름과 같아야함 userEmail
+const { userEmail } = useParams();
+
 
 // event handler : 마이페이지 버튼 클릭 이벤트 처리 함수
 const onMyPageButtonClickHandler = () => {
-  navigate(USER_PATH(''));
+  if(!loginUser) return;
+  const { email } = loginUser;
+  navigate(USER_PATH(email));
 } 
 
 // event handler : 로그인 버튼 클릭 이벤트 처리 함수
@@ -99,11 +110,21 @@ const onLoiginButtonClickHandler = () => {
   navigate(AUTH_PATH());
 } 
 
-// Render : 로그인 버튼 렌더링
+// event handler : 로그아웃 버튼 클릭 이벤트 처리 함수
+const onSignOutButtonClickHandler = () => {
+  navigate(MAIN_PATH());
+} 
+
+// Render : 로그아웃 버튼 렌더링
+if(isLogin && userEmail === loginUser?.email) // 사용자가 로그인하고 있으며(isLogin:true), 현재 로그인된 사용자의 이메일이 userEmail과 일치하는 경우에만 렌더링
+return(<div className='black-button' onClick={onSignOutButtonClickHandler}>{'로그아웃'}</div>);
+// Render : 마이페이지 버튼 렌더링
 if (isLogin)
   return(<div className='white-button' onClick={onMyPageButtonClickHandler}>{'마이페이지'}</div>);
-
+// Render : 로그인 버튼 렌더링
   return(<div className='black-button' onClick={onLoiginButtonClickHandler}>{'로그인'}</div>);
+
+
 }
 
 
@@ -119,7 +140,7 @@ if (isLogin)
         </div>
         <div className='header-light-box'>
           <SearchButton />
-          <LoginMyPageButton />
+          <MyPageButton />
         </div>
       </div>
     </div>
