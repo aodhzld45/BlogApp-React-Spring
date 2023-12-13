@@ -1,6 +1,6 @@
 import './style.css'
 import { useNavigate, useParams } from 'react-router-dom'
-import { MAIN_PATH, SEARCH_PATH } from 'constant';
+import { AUTH_PATH, MAIN_PATH, SEARCH_PATH, USER_PATH } from 'constant';
 import { useState, ChangeEvent,KeyboardEvent, useRef, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
@@ -8,6 +8,9 @@ import { useCookies } from 'react-cookie';
 export default function Header() {
 // state : 쿠키(Cookie) 상태값 관리
 const [cookie, setCookie] = useCookies();
+
+// state : 로그인 상태값 관리
+const [isLogin, setIsLogin] = useState<boolean>(false);
 
 // function : 네비게이트 함수 
 const navigate = useNavigate();
@@ -25,7 +28,7 @@ const SearchButton = () => {
 const searchButtonRef = useRef<HTMLDivElement | null>(null);
 
 // State : 검색 버튼 상태값 관리
-const [searchStatus, setSearchStatus] = useState<boolean>(false);
+const [searchStatus, setSearchStatus] = useState<boolean>(true);
 // State : 검색어 상태값 관리
 const [word, setWord] = useState<string>('');
 // State : 검색어 PathVariable 상태값 관리 -> url에 태워보낼 파라미터 이름과 같아야함 searchWord
@@ -83,12 +86,24 @@ if(!searchStatus)
 }
 
 /* ===== 로그인 또는 마이페이지 버튼 컴포넌트 LoginMyPageButton ===== */
-  // Component : 로그인 또는 마이페이지 버튼 컴포넌트 
-
+// Component : 로그인 또는 마이페이지 버튼 컴포넌트 
 const LoginMyPageButton = () => {
 
+// event handler : 마이페이지 버튼 클릭 이벤트 처리 함수
+const onMyPageButtonClickHandler = () => {
+  navigate(USER_PATH(''));
+} 
+
+// event handler : 로그인 버튼 클릭 이벤트 처리 함수
+const onLoiginButtonClickHandler = () => {
+  navigate(AUTH_PATH());
+} 
+
 // Render : 로그인 버튼 렌더링
-  return(<div className='black-button'>{'로그인'}</div>);
+if (isLogin)
+  return(<div className='white-button' onClick={onMyPageButtonClickHandler}>{'마이페이지'}</div>);
+
+  return(<div className='black-button' onClick={onLoiginButtonClickHandler}>{'로그인'}</div>);
 }
 
 

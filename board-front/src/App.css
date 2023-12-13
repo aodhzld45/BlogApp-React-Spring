@@ -42,10 +42,12 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 140%;
+
+    cursor: pointer;
 }
 
-.white-button {
-    background-color: rgba(0, 0, 0, 0.02);
+.white-button:hover {
+    background-color: rgba(0, 0, 0, 0.04);
 }
 
 .icon-box {
