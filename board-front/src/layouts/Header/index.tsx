@@ -2,9 +2,12 @@ import './style.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MAIN_PATH, SEARCH_PATH } from 'constant';
 import { useState, ChangeEvent,KeyboardEvent, useRef, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 
 // Component : 헤더 화면 (Header) 컴포넌트
 export default function Header() {
+// state : 쿠키(Cookie) 상태값 관리
+const [cookie, setCookie] = useCookies();
 
 // function : 네비게이트 함수 
 const navigate = useNavigate();
@@ -14,10 +17,11 @@ const onLogoClickHandler = () => {
   navigate(MAIN_PATH());
 }
 
+/* ===== 검색 컴포넌트 SearchButton ===== */
 // Component : 검색 버튼 컴포넌트
 const SearchButton = () => {
 
-// state : 검색어 버튼 요소 참조 상태값 고나리
+// state : 검색어 버튼 요소 참조 상태값 관리
 const searchButtonRef = useRef<HTMLDivElement | null>(null);
 
 // State : 검색 버튼 상태값 관리
@@ -78,6 +82,16 @@ if(!searchStatus)
   );
 }
 
+/* ===== 로그인 또는 마이페이지 버튼 컴포넌트 LoginMyPageButton ===== */
+  // Component : 로그인 또는 마이페이지 버튼 컴포넌트 
+
+const LoginMyPageButton = () => {
+
+// Render : 로그인 버튼 렌더링
+  return(<div className='black-button'>{'로그인'}</div>);
+}
+
+
 // Render : 헤더 화면 (Header) 렌더링 부분
   return (
     <div id='header'>
@@ -90,6 +104,7 @@ if(!searchStatus)
         </div>
         <div className='header-light-box'>
           <SearchButton />
+          <LoginMyPageButton />
         </div>
       </div>
     </div>
