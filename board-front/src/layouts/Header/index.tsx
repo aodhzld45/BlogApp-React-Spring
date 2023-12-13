@@ -23,7 +23,7 @@ const searchButtonRef = useRef<HTMLDivElement | null>(null);
 // State : 검색 버튼 상태값 관리
 const [searchStatus, setSearchStatus] = useState<boolean>(false);
 // State : 검색어 상태값 관리
-const [word, setWord] = useState('');
+const [word, setWord] = useState<string>('');
 // State : 검색어 PathVariable 상태값 관리 -> url에 태워보낼 파라미터 이름과 같아야함 searchWord
 const { searchWord } = useParams();
 
@@ -70,7 +70,7 @@ if(!searchStatus)
 // Render : 검색 아이콘 화면 (SearchButton) 렌더링 (클릭 true 상태)
   return (
     <div className='header-search-input-box'>
-      <input className='header-search-input' type='text' placeholder='검색어를 입력해주세요.' onChange={onSearchWordChangHandler} onKeyDown={onSearchWordkeyDownHandler}/>
+      <input className='header-search-input' type='text' value={word} placeholder='검색어를 입력해주세요.' onChange={onSearchWordChangHandler} onKeyDown={onSearchWordkeyDownHandler}/>
       <div className='icon-button' onClick={onSearchButtonClickHandler}> 
         <div className='icon search-light-icon'></div>
       </div>
