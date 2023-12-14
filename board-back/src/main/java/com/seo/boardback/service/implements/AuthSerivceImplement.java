@@ -17,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 public class AuthSerivceImplement implements AuthService {
     // @RequiredArgsConstructor 어노테이션을 선언하면
     // final로 지정된 필드는 생성자가 자동 생성됨
-    // @Autowired
     private final UserRepository userRepository;
 
     // 비밀번호 암호화 관련
