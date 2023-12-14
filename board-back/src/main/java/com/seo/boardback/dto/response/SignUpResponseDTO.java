@@ -12,14 +12,14 @@ import lombok.Getter;
  * SignUpResponsDTO
  */
 @Getter
-public class SignUpResponsDTO extends ResponseDTO {
+public class SignUpResponseDTO extends ResponseDTO {
 
-    private SignUpResponsDTO() {
+    private SignUpResponseDTO() {
         super(ResponseCode.SUCCESS , ResponseMessage.SUCCESS);
     }
 
-    public static ResponseEntity<SignUpResponsDTO> success() {
-        SignUpResponsDTO result = new SignUpResponsDTO();
+    public static ResponseEntity<SignUpResponseDTO> success() {
+        SignUpResponseDTO result = new SignUpResponseDTO();
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
