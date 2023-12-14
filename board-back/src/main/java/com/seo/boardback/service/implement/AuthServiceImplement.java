@@ -1,4 +1,4 @@
-import org.springframework.beans.factory.annotation.Autowired;
+package com.seo.boardback.service.implement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.seo.boardback.dto.request.auth.SignUpRequestDTO;
 import com.seo.boardback.dto.response.ResponseDTO;
-import com.seo.boardback.dto.response.SignUpResponseDTO;
+import com.seo.boardback.dto.response.auth.SignUpResponseDTO;
 import com.seo.boardback.entity.UserEntity;
 import com.seo.boardback.repository.UserRepository;
 import com.seo.boardback.service.AuthService;
@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 public class AuthServiceImplement implements AuthService {
     // @RequiredArgsConstructor 어노테이션을 선언하면
     // final로 지정된 필드는 생성자가 자동 생성됨
-    @Autowired
     private final UserRepository userRepository;
 
     // 비밀번호 암호화 관련

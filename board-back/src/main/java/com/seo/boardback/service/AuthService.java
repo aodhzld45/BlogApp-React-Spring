@@ -1,6 +1,6 @@
 package com.seo.boardback.service;
 
-import com.seo.boardback.dto.response.SignUpResponseDTO;
+import com.seo.boardback.dto.response.auth.SignUpResponseDTO;
 import org.springframework.http.ResponseEntity;
 
 import com.seo.boardback.dto.request.auth.SignUpRequestDTO;

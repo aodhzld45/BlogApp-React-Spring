@@ -1,7 +1,6 @@
 package com.seo.boardback.controller;
 
-import com.seo.boardback.dto.response.SignUpResponseDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.seo.boardback.dto.response.auth.SignUpResponseDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class AuthController {
 
     // Service에서 비즈니스 로직을 작성
-    @Autowired
     private final AuthService authService;
 
     // Controller에서는 비즈니스 로직 X -> requset을 받아서 response만 해주는 역할.
