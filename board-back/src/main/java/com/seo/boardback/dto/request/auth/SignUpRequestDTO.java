@@ -36,7 +36,7 @@ public class SignUpRequestDTO {
     private String addressDetail;
 
     @NotNull @AssertTrue
-    private Boolean agreePersonal; // 개인정보 수집 동의 반드시 True
+    private Boolean agreedPersonal; // 개인정보 수집 동의 반드시 True
 
 
     

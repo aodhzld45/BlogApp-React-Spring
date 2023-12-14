@@ -1,5 +1,7 @@
 package com.seo.boardback.entity;
 
+import com.seo.boardback.dto.request.auth.SignUpRequestDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -22,5 +24,16 @@ public class UserEntity {
     private String address;
     private String addressDetail;
     private String ProfileImage;
+    private boolean agreedPersonal;
 
+    public UserEntity(SignUpRequestDTO dto) {
+        this.email = dto.getEmail();
+        this.password = dto.getPassword();
+        this.nickname = dto.getNickname();
+        this.telNumber = dto.getTelNumber();
+        this.address = dto.getAddress();
+        this.addressDetail = dto.getAddressDetail();
+        this.agreedPersonal = dto.getAgreedPersonal();
+    }
+ 
 }
