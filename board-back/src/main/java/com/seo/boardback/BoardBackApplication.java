@@ -2,11 +2,9 @@ package com.seo.boardback;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
-@ComponentScan(basePackages = "com.seo.board-back")
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class BoardBackApplication {
 
 	public static void main(String[] args) {
