@@ -110,5 +110,6 @@ ORDER BY write_datetime
 
 ALTER TABLE `image` ADD COLUMN `sequence` INT PRIMARY KEY AUTO_INCREMENT COMMENT '이미지 번호'
 
+ALTER TABLE `user` ADD COLUMN `agreed_personal` BOOLEAN NOT NULL COMMENT '개인정보 동의 여부'; 
 
 
