@@ -22,19 +22,19 @@ const [isLogin, setIsLogin] = useState<boolean>(false);
 
 // PATH별 Page 정의
 // state : 인증 페이지 상태값 관리
-const [isAuthPage, setAuthPage] = useState<boolean>(false);
-// state : 메인 페이지 상태값 관리
-const [isMainPage, setMainPage] = useState<boolean>(false);
-// state : 검색 페이지 상태값 관리
-const [isSearchPage, setSearchPage] = useState<boolean>(false);
-// state : 게시물 상세 페이지 상태값 관리
-const [isBoardDetailPage, setBoardDetailPage] = useState<boolean>(false);
-// state : 게시물 작성 페이지 상태값 관리
-const [isBoardWritePage, setBoardWritePage] = useState<boolean>(false);
-// state : 게시물 수정 페이지 상태값 관리
-const [isBoardUpdatePage, setBoardUpdatePage] = useState<boolean>(false);
-// state : 유저(마이) 페이지 상태값 관리
-const [isUserPage, setUserPage] = useState<boolean>(false);
+// const [isAuthPage, setAuthPage] = useState<boolean>(false);
+// // state : 메인 페이지 상태값 관리
+// const [isMainPage, setMainPage] = useState<boolean>(false);
+// // state : 검색 페이지 상태값 관리
+// const [isSearchPage, setSearchPage] = useState<boolean>(false);
+// // state : 게시물 상세 페이지 상태값 관리
+// const [isBoardDetailPage, setBoardDetailPage] = useState<boolean>(false);
+// // state : 게시물 작성 페이지 상태값 관리
+// const [isBoardWritePage, setBoardWritePage] = useState<boolean>(false);
+// // state : 게시물 수정 페이지 상태값 관리
+// const [isBoardUpdatePage, setBoardUpdatePage] = useState<boolean>(false);
+// // state : 유저(마이) 페이지 상태값 관리
+// const [isUserPage, setUserPage] = useState<boolean>(false);
 
 // function : 네비게이트 함수 
 const navigate = useNavigate();
@@ -167,24 +167,32 @@ if(title && content)
 }
 
 // Effect : Path가 변경 될 때마다 실행할 함수.
-useEffect(() => {
-  const isAuthPage = pathname.startsWith(AUTH_PATH());
-  setAuthPage(isAuthPage);
-  const isMainPage = pathname === MAIN_PATH();
-  setMainPage(isMainPage);
-  const isSearchPage = pathname.startsWith(SEARCH_PATH(''));
-  setSearchPage(isSearchPage);
-  const isBoardDetailPage = pathname.startsWith(BOARD_PATH() + '/' + BOARD_DETAIL_PATH(''));
-  setBoardDetailPage(isBoardDetailPage)
-  const isBoardWritePage = pathname.startsWith(BOARD_PATH() + '/' + BOARD_WRITE_PATH());
-  setBoardWritePage(isBoardWritePage);
-  const isBoardUpdatePage = pathname.startsWith(BOARD_PATH() + '/' + BOARD_UPDATE_PATH(''));
-  setBoardUpdatePage(isBoardUpdatePage)
-  const isUserPage = pathname.startsWith(USER_PATH(''));
-  setUserPage(isUserPage);
+// useEffect(() => {
+//   const isAuthPage = pathname.startsWith(AUTH_PATH());
+//   setAuthPage(isAuthPage);
+//   const isMainPage = pathname === MAIN_PATH();
+//   setMainPage(isMainPage);
+//   const isSearchPage = pathname.startsWith(SEARCH_PATH(''));
+//   setSearchPage(isSearchPage);
+//   const isBoardDetailPage = pathname.startsWith(BOARD_PATH() + '/' + BOARD_DETAIL_PATH(''));
+//   setBoardDetailPage(isBoardDetailPage)
+//   const isBoardWritePage = pathname.startsWith(BOARD_PATH() + '/' + BOARD_WRITE_PATH());
+//   setBoardWritePage(isBoardWritePage);
+//   const isBoardUpdatePage = pathname.startsWith(BOARD_PATH() + '/' + BOARD_UPDATE_PATH(''));
+//   setBoardUpdatePage(isBoardUpdatePage)
+//   const isUserPage = pathname.startsWith(USER_PATH(''));
+//   setUserPage(isUserPage);
   
-}, [pathname]);
+// }, [pathname]);
 
+// PATH별 Page 정의 2
+const isAuthPage = pathname.startsWith(AUTH_PATH());
+const isMainPage = pathname === MAIN_PATH();
+const isSearchPage = pathname.startsWith(SEARCH_PATH(''));
+const isBoardDetailPage = pathname.startsWith(BOARD_PATH() + '/' + BOARD_DETAIL_PATH(''));
+const isBoardWritePage = pathname.startsWith(BOARD_PATH() + '/' + BOARD_WRITE_PATH());
+const isBoardUpdatePage = pathname.startsWith(BOARD_PATH() + '/' + BOARD_UPDATE_PATH(''));
+const isUserPage = pathname.startsWith(USER_PATH(''));
 
 // Render : 헤더 화면 (Header) 렌더링 부분
   return (
