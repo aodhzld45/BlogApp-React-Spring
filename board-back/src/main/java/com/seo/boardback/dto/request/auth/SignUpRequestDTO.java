@@ -13,7 +13,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class SignUpRequestDTO {
 
     //required - NotBlank
@@ -27,7 +26,7 @@ public class SignUpRequestDTO {
     @NotBlank
     private String nickname;
 
-    @NotBlank @Pattern(regexp = "^[0-9](11,13)$") // 숫자 0~9 11, 13자리 정규식
+    @NotBlank @Pattern(regexp = "^[0-9]{11,13}$") // 숫자 0~9 11, 13자리 정규식
     private String telNumber;
 
     @NotBlank
