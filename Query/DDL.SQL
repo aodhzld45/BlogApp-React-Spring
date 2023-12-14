@@ -112,4 +112,5 @@ ALTER TABLE `image` ADD COLUMN `sequence` INT PRIMARY KEY AUTO_INCREMENT COMMENT
 
 ALTER TABLE `user` ADD COLUMN `agreed_personal` BOOLEAN NOT NULL COMMENT '개인정보 동의 여부'; 
 
-
+ALTER TABLE `user` 
+	CHANGE `addressDetail` `address_detail` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '사용자 상세주소' DEFAULT NULL ;
