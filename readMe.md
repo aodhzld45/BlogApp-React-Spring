@@ -1004,6 +1004,8 @@ ADD CONSTRAINT FK_board_TO_comment
 FOREIGN KEY (board_number)
 REFERENCES board (board_number);
 
+ALTER TABLE `image` ADD COLUMN `sequence` INT PRIMARY KEY AUTO_INCREMENT COMMENT '이미지 번호'
+
 <hr />
 
 </pre>

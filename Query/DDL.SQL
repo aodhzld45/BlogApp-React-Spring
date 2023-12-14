@@ -107,6 +107,8 @@ SELECT
 FROM board AS B
 INNER JOIN `user` AS U ON B.writer_email = U.email
 ORDER BY write_datetime
- 
+
+ALTER TABLE `image` ADD COLUMN `sequence` INT PRIMARY KEY AUTO_INCREMENT COMMENT '이미지 번호'
+
 
 
