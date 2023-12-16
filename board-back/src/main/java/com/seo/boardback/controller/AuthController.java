@@ -1,9 +1,11 @@
 package com.seo.boardback.controller;
 
 import com.seo.boardback.dto.response.auth.SignUpResponseDTO;
+import com.seo.boardback.dto.response.auth.SignInResponseDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.seo.boardback.dto.request.auth.SignInRequestDTO;
 import com.seo.boardback.dto.request.auth.SignUpRequestDTO;
 import com.seo.boardback.service.AuthService;
 
@@ -11,7 +13,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -28,20 +29,17 @@ public class AuthController {
     @PostMapping("/sign-up")
     public ResponseEntity<? super SignUpResponseDTO> signUp(@RequestBody @Valid SignUpRequestDTO requestBody) {
 
-        System.out.println(requestBody);
+        // System.out.println(requestBody);
         ResponseEntity<? super SignUpResponseDTO> response = authService.signUp(requestBody);
         return response;
     
     }
 
-    @GetMapping("/test")
-    public String SimpleMapping2Number(){
-
-        String test = "test";
-
-        System.out.println("test");
-        
-        return test;
+    @PostMapping("/sign-in")
+    public ResponseEntity<? super SignInResponseDTO> signIn(@RequestBody @Valid SignInRequestDTO requestBody){
+       System.out.println(requestBody);
+        ResponseEntity<? super SignInResponseDTO>  response = authService.signIn(requestBody);
+        return response;
     }
 
     
