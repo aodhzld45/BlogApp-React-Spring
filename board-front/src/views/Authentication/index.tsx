@@ -34,6 +34,12 @@ const onLoginButtonClickHandler = () => {
   
 }
 
+// Event handler : 회원가입 링크 클릭 이벤트 처리 핸들러
+const onSignUpLinkClickHandler = () => {
+  setView('sign-up');
+}
+
+
 // Event handler : 비밀번호 버튼 클릭 이벤트 처리 핸들러
 const onPasswordButtonClickHandler = () => {
   if (passwordType === 'text') {
@@ -76,7 +82,7 @@ const onPasswordKeyDownHandler = (e :KeyboardEvent<HTMLInputElement>) => {
               </div>
             </div>
             <div className='black-large-full-button' onClick={onLoginButtonClickHandler}>{'로그인'}</div>
-            <div className='auth-description-box'>{'신규 사용자이신가요?'}<span className='auth-description-link'>{'회원가입'}</span></div>
+            <div className='auth-description-box'>{'신규 사용자이신가요?'}<span className='auth-description-link' onClick={onSignUpLinkClickHandler}>{'회원가입'}</span></div>
           </div>
         </div>
       </div>
