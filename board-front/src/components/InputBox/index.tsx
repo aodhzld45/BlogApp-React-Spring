@@ -1,4 +1,4 @@
-import { KeyboardEvent, Dispatch, SetStateAction, forwardRef, ChangeEvent } from 'react'
+import { KeyboardEvent, forwardRef, ChangeEvent } from 'react'
 
 import './style.css'
 
@@ -8,7 +8,7 @@ interface Props {
     type : 'text'| 'password';
     placeholder : string;
     value : string;
-    setValue : Dispatch<SetStateAction<string>>;
+    onChange : (e: ChangeEvent<HTMLInputElement>) => void;
     error : boolean;
     // ?로 필수값이 아님을 선언 
     icon?: 'eye-light-off-icon' | 'eye-light-on-icon' | 'expend-right-light-icon'; 
@@ -23,13 +23,13 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
 
 // State : Properties(InputBox Props)
 const {label, type, error, placeholder, value, icon, message} = props;
-const { setValue, onButtonClick, onKeyDown } = props;
+const { onChange, onButtonClick, onKeyDown } = props;
 
-// Event Handler : onChangeHandler - Input 값 변경 이벤트 처리 함수
-const onChangeHandler = (e : ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setValue(value);
-};
+// // Event Handler : onChangeHandler - Input 값 변경 이벤트 처리 함수
+// const onChangeHandler = (e : ChangeEvent<HTMLInputElement>) => {
+//     const { value } = e.target;
+//     setValue(value);
+// };
 
 // Event Handler : onKeyDownHandler - Input key 이벤트 처리 함수
 const onKeyDownHandler = (e : KeyboardEvent<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ const onKeyDownHandler = (e : KeyboardEvent<HTMLInputElement>) => {
     <div className='inputbox'>
         <div className='inputbox-label'>{label}</div>
         <div className={error ? 'inputbox-container-error' : 'inputbox-container'}>
-            <input ref={ref} type={type} className='input' placeholder={placeholder} value={value} onChange={onChangeHandler} onKeyDown={onKeyDownHandler}/>
+            <input ref={ref} type={type} className='input' placeholder={placeholder} value={value} onChange={onChange} onKeyDown={onKeyDownHandler}/>
             {onButtonClick !== undefined && 
                <div className='icon-button' onClick={onButtonClick}>
                {icon !== undefined && <div className={`icon ${icon}`}></div>} 

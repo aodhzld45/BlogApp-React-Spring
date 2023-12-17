@@ -16,6 +16,10 @@ export default function Container() {
 const  {pathname } = useLocation();
 const [value, setValue] = useState<string>('');
 
+const onTestChangeHandler = () => {
+  alert('test')
+}
+
 
 // Render : Container 화면 (Container) 렌더링 부분
   return (
@@ -42,7 +46,7 @@ const [value, setValue] = useState<string>('');
 
     {/* InputBox */}
     <div>
-    <InputBox label='이메일' type='text' placeholder='이메일 주소를 입력해주세요' value={value} error={true} setValue={setValue} message='에러메세지 테스트'/>
+    <InputBox label='이메일' type='text' placeholder='이메일 주소를 입력해주세요' value={value} error={true} onChange={onTestChangeHandler} message='에러메세지 테스트'/>
     </div>
 
     {/* <div>
