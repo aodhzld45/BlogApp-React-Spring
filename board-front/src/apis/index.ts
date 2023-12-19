@@ -2,7 +2,6 @@ import axios from "axios";
 import { SignInRequestDTO, SignUpRequestDTO } from "./request/auth";
 import { SignInReqonseDTO, SignUpReqonseDTO } from "./response/auth";
 import { ResponseDto } from "./response";
-import { error } from "console";
 
 const DOMAIN = 'http://localhost:4000';
 
@@ -15,7 +14,7 @@ const SIGN_UP_URL = () => `${DOMAIN}/api/v1/auth/sign-up`;
 // 로그인 API 
 export const signInRequest = async (requestBody : SignInRequestDTO)  => {
     // await 응답이 올 때까지 기다림
-    const reuslt = await axios.post(SIGN_IN_URL(), requestBody)
+    const result = await axios.post(SIGN_IN_URL(), requestBody)
         .then(response => {
             const responseBody: SignInReqonseDTO = response.data;
             return responseBody;
@@ -24,12 +23,20 @@ export const signInRequest = async (requestBody : SignInRequestDTO)  => {
             const responseBody: ResponseDto = error.response.data;
             return responseBody;
         })
-    return reuslt;
+    return result;
 }
 
 // 회원가입 API
 export const signUpRequest = async (requestBody : SignUpRequestDTO)  => {
-
-
+    const result = await axios.post(SIGN_UP_URL(), requestBody)
+        .then(response => {
+            const responseBody: SignUpReqonseDTO = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        })
+        return result;
 
 }
