@@ -5,7 +5,7 @@ import './style.css'
 // interface : InputBox 컴포넌트 Properties
 interface Props {
     label : string;
-    type : 'text'| 'password';
+    type : 'text'| 'password' | 'email';
     placeholder : string;
     value : string;
     onChange : (e: ChangeEvent<HTMLInputElement>) => void;
