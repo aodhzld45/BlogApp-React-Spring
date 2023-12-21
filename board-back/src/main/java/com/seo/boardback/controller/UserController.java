@@ -14,14 +14,14 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/user")
-
 public class UserController {
 
     private final UserService userService;
 
     @GetMapping("")
-    public ResponseEntity<? super GetSignInUserResponseDTO> getSignInUser(@AuthenticationPrincipal
-    String email) {
+    public ResponseEntity<? super GetSignInUserResponseDTO> getSignInUser(
+            @AuthenticationPrincipal String email) {
+        System.out.println("email : " +  email);
         ResponseEntity<? super GetSignInUserResponseDTO> response = userService.getSignInUser(email);
         return response;
     }
