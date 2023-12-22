@@ -51,7 +51,7 @@ const signInrResponse = (responseBody: SignInReqonseDTO | ResponseDto | null) =>
 
   const {token, expirationTime} = responseBody as SignInReqonseDTO;
   const now = new Date().getTime();
-  const expires = new Date(now + expirationTime);
+  const expires = new Date(now + expirationTime * 1000);
 
   setCookies('accessToken', token, {expires, path: MAIN_PATH() });
 
@@ -77,6 +77,7 @@ const onPasswordChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 const onLoginButtonClickHandler = () => {
   const requestBody : SignInRequestDTO = { email, password};
   signInRequest(requestBody).then(signInrResponse);
+  
 }
 
 // Event handler : 회원가입 링크 클릭 이벤트 처리 핸들러
@@ -108,6 +109,7 @@ const onEmailKeyDownHandler = (e :KeyboardEvent<HTMLInputElement>) => {
 // Event handler : 비밀번호 인풋 키 다운 이벤트 처리 핸들러
 const onPasswordKeyDownHandler = (e :KeyboardEvent<HTMLInputElement>) => {
   if(e.key !== 'Enter') return;
+  onLoginButtonClickHandler();
 }
 
 

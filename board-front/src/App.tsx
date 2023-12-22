@@ -2,7 +2,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Main from 'views/Main';
 import Authentication from 'views/Authentication';
-import User from 'views/User';
+import UserP from 'views/User';
 import BoardDetail from 'views/Board/Detail';
 import BoardWrite from 'views/Board/Write';
 import BoardUpdate from 'views/Board/Update';
@@ -12,6 +12,13 @@ import {
   BOARD_PATH, BOARD_WRITE_PATH, BOARD_UPDATE_PATH, BOARD_DETAIL_PATH
  } from 'constant';
 import Search from 'views/Search';
+import { useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import { useLoginUserStore } from 'stores';
+import { getSignInUserRequset } from 'apis';
+import { GetSignInUserResponseDTO } from 'apis/response/user';
+import { ResponseDto } from 'apis/response';
+import { User } from 'types/interface';
 
 // Component : Application 컴포넌트
 // description : 메인화면 '/' - main
@@ -23,6 +30,34 @@ import Search from 'views/Search';
 // description : 유저 페이지 '/user/userEmail' User
 
 function App() {
+  // State : 로그인 유저 전역 상태값 관리
+  const {setLoginUser, resetLoginUser} = useLoginUserStore();
+
+  // State : cookie 상태값 관리
+  const [cookies, setCookies] = useCookies();
+
+  // Function : get sign in user response 처리 함수
+  const getSignUserResponse = (responseBody : GetSignInUserResponseDTO | ResponseDto | null) => {
+    if(!responseBody) return;
+    const { code } = responseBody;
+    if (code === 'AF' || code === 'NU' ||code === 'DBE') {
+      resetLoginUser();
+      return;
+    }
+    const loginUser : User = { ...responseBody as GetSignInUserResponseDTO };
+    setLoginUser(loginUser);
+  }
+
+  // Effect : accessToken cooike 값이 변경 될 때마다 실행할 함수
+  useEffect(() => {
+    if (!cookies.accessToken) {
+      resetLoginUser();
+      return;
+    }
+    getSignInUserRequset(cookies.accessToken).then(getSignUserResponse);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cookies.accessToken]);
+  
 
 
 // Reder : Application rendering
@@ -37,7 +72,7 @@ function App() {
       <Route path={MAIN_PATH()} element={<Main />} />
       <Route path={AUTH_PATH()} element={<Authentication />} />
       <Route path={SEARCH_PATH(':searchWord')} element={<Search />}  />
-      <Route path={USER_PATH(':userEmail')} element={<User />} />
+      <Route path={USER_PATH(':userEmail')} element={<UserP />} />
       <Route path={BOARD_PATH()}>
         <Route path={BOARD_WRITE_PATH()} element={<BoardWrite />} />
         <Route path={BOARD_DETAIL_PATH(':boardNumber')} element={<BoardDetail />} />

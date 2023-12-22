@@ -18,7 +18,7 @@ const { pathname } = useLocation();
 const [cookie, setCookie] = useCookies();
 
 // state : 로그인 상태값 관리
-const [isLogin, setIsLogin] = useState<boolean>(false);
+const [isLogin, setLogin] = useState<boolean>(false);
 
 // PATH별 Page 정의
 // state : 인증 페이지 상태값 관리
@@ -130,6 +130,8 @@ const onLoiginButtonClickHandler = () => {
 
 // event handler : 로그아웃 버튼 클릭 이벤트 처리 함수
 const onSignOutButtonClickHandler = () => {
+  resetLoginUser();
+  setCookie('accessToken', '', { path : MAIN_PATH(), expires: new Date() });
   navigate(MAIN_PATH());
 } 
 
@@ -166,7 +168,7 @@ if(title && content)
 
 }
 
-// Effect : Path가 변경 될 때마다 실행할 함수.
+// Effect : pathname이 변경 될 때마다 실행할 함수.
 // useEffect(() => {
 //   const isAuthPage = pathname.startsWith(AUTH_PATH());
 //   setAuthPage(isAuthPage);
@@ -184,6 +186,12 @@ if(title && content)
 //   setUserPage(isUserPage);
   
 // }, [pathname]);
+// Effect : loginUser가 변경 될 때마다 실행할 함수.
+// loginUser null이 아니면 로그인 / null이면 로그아웃 상태
+useEffect(() => {
+  setLogin(loginUser !== null);
+},[loginUser])
+
 
 // PATH별 Page 정의 2
 const isAuthPage = pathname.startsWith(AUTH_PATH());

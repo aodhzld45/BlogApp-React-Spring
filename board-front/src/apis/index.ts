@@ -2,13 +2,18 @@ import axios from "axios";
 import { SignInRequestDTO, SignUpRequestDTO } from "./request/auth";
 import { SignInReqonseDTO, SignUpReqonseDTO } from "./response/auth";
 import { ResponseDto } from "./response";
+import { GetSignInUserResponseDTO } from './response/user';
 
 const DOMAIN = 'http://localhost:4000';
 
-const API_DOMAIN = `${DOMAIN}/api/v1/`;
+const API_DOMAIN = `${DOMAIN}/api/v1`;
 
-const SIGN_IN_URL = () => `${DOMAIN}/api/v1/auth/sign-in`;
-const SIGN_UP_URL = () => `${DOMAIN}/api/v1/auth/sign-up`;
+const authorization = (accessToken: string) => {
+    return { headers : { Authorization: `Bearer ${accessToken}`} }
+};
+
+const SIGN_IN_URL = () => `${API_DOMAIN}/auth/sign-in`;
+const SIGN_UP_URL = () => `${API_DOMAIN}/auth/sign-up`;
 
 // 비동기 async
 // 로그인 API 
@@ -20,6 +25,7 @@ export const signInRequest = async (requestBody : SignInRequestDTO)  => {
             return responseBody;
         })
         .catch(error => {
+            if(!error.response.data) return null;
             const responseBody: ResponseDto = error.response.data;
             return responseBody;
         })
@@ -38,5 +44,23 @@ export const signUpRequest = async (requestBody : SignUpRequestDTO)  => {
             return responseBody;
         })
         return result;
+}
 
+// 로그인한 사용자 불러오기 API 
+const GET_SIGN_IN_USER_URL = () => `${API_DOMAIN}/user`;
+
+export const getSignInUserRequset = async (accessToken:string) => {
+    const result = await axios.get(GET_SIGN_IN_USER_URL(), authorization(accessToken))
+        .then(response => {
+            const responseBody : GetSignInUserResponseDTO = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            if(!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        })
+
+        return result;
+    
 }
