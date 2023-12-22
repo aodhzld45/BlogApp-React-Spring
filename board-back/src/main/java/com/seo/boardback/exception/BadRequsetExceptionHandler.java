@@ -1,6 +1,5 @@
 package com.seo.boardback.exception;
 
-import org.springframework.http.HttpMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
