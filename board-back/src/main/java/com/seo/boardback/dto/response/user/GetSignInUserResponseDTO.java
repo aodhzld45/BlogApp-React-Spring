@@ -20,7 +20,6 @@ public class GetSignInUserResponseDTO extends ResponseDTO {
     public GetSignInUserResponseDTO(UserEntity userEntity) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
         this.email = userEntity.getEmail();
-        System.out.println("GetSignInUserResponseDTO email: " + email);
         this.nickname = userEntity.getNickname();
         this.profileImg = userEntity.getProfileImage();
     }
