@@ -30,7 +30,7 @@ useEffect(() => {
   return (
     <div id='board-write-wrapper'>
       <div className='board-write-container'>
-        <div className='write-box'>
+        <div className='board-write-box'>
           <div className='board-write-title-box'>
             <input className='board-write-title-input' type='text' placeholder='제목을 작성해주세요.' value={title} />
           </div>
@@ -47,10 +47,18 @@ useEffect(() => {
          <div className='board-write-images-box'>
           {/* 이미지를 저장할 박스들 */}
           <div className='board-write-image-box'>
-            <img className='board-write-image' />
+            <img className='board-write-image' alt='newJeans1' src='https://file2.nocutnews.co.kr/newsroom/image/2023/01/21/202301210408091762_0.jpg' />
             <div className='icon-button image-close'>
               <div className='icon close-icon'></div>
             </div>
+
+
+            <div className='board-write-image-box'>
+            <img className='board-write-image'alt='newJeans2' src='https://www.kukinews.com/data/kuk/image/2023/08/07/kuk202308070046.680x.0.jpg' />
+            <div className='icon-button image-close'>
+              <div className='icon close-icon'></div>
+            </div>
+          </div>
           </div>
          </div>
         </div>
