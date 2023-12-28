@@ -1,3 +1,6 @@
 #board-write-wrapper {
-    width: 1440px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.05);
 }
