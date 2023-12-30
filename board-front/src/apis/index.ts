@@ -62,5 +62,25 @@ export const getSignInUserRequset = async (accessToken:string) => {
         })
 
         return result;
-    
+}
+
+// 파일 업로드 
+const FILE_DOMAIN = `${DOMAIN}/file`;
+
+const FILE_UPLOAD_URL = () => `${FILE_DOMAIN}/upload`;
+
+const mulitpartFormData = { headers: { 'Content-Type': 'multipart/form-data' } };
+
+export const fileUploadRequest = async (data: FormData) => {
+    const result = await axios.post(FILE_UPLOAD_URL(), data, mulitpartFormData )
+        .then(response => {
+            const responseBody: string = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            return null;
+        })
+
+        return result;
+
 }
