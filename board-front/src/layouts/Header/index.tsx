@@ -4,6 +4,10 @@ import { AUTH_PATH, BOARD_DETAIL_PATH, BOARD_PATH, BOARD_UPDATE_PATH, BOARD_WRIT
 import { useState, ChangeEvent,KeyboardEvent, useRef, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useBoardStore, useLoginUserStore } from 'stores';
+import { fileUploadRequest, postBoardRequest } from 'apis';
+import { PostBoardRequestDto } from 'apis/request/board';
+import { PostBoardResponseDto } from 'apis/response/board';
+import { ResponseDto } from 'apis/response';
 
 // Component : 헤더 화면 (Header) 컴포넌트
 export default function Header() {
@@ -152,15 +156,48 @@ if (isLogin)
 const UplodButton = () => {
 
 // State : 게시물 상태값 관리
-  const { title, content, boardImageFileList, resetBoard } = useBoardStore();
-
-
- // event handler : 업로드 버튼 클릭 이벤트 처리 함수
-
- const onUploadButtonClickHandler = () => {
+const { title, content, boardImageFileList, resetBoard } = useBoardStore();
+// function : post board response 처리 함수
+const postboardResponse = (responseBody: PostBoardResponseDto | ResponseDto | null) => {
   
+  if(!responseBody) return;
 
- }
+  const { code } = responseBody;
+  if (code === 'DBE') alert('데이터베이스 오류입니다.');
+  if (code === 'AF' || code === 'NU') navigate(AUTH_PATH());
+  if (code === 'VF') alert('제목과 내용은 필수입니다.');
+  if (code !== 'SU') return;
+  resetBoard();
+  if(!loginUser) return;
+  const { email } = loginUser;
+  navigate(USER_PATH(email));
+
+};
+
+// event handler : 업로드 버튼 클릭 이벤트 처리 함수
+
+const onUploadButtonClickHandler = async () => {
+  const accessToken = cookie.accessToken;
+  if(!accessToken) return;
+
+
+  const boardImageList: string[] = [];
+  for(const file of boardImageFileList) {
+    const data = new FormData();
+    data.append('file', file);
+
+    const url = await fileUploadRequest(data);
+    if(url) boardImageList.push(url);
+  }
+
+  const requestBody : PostBoardRequestDto = {
+    title, content, boardImageList
+  }
+
+  postBoardRequest(requestBody, accessToken).then(postboardResponse);
+  alert('업로드가 완료되었습니다.');
+}
+
 if(title && content)
   // Render : 업로드 버튼 렌더링
   return(<div className='black-button' onClick={onUploadButtonClickHandler}>{'업로드'}</div>);

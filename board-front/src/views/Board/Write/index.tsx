@@ -3,6 +3,7 @@ import './style.css';
 import { useBoardStore, useLoginUserStore } from 'stores';
 import { useNavigate } from 'react-router-dom';
 import { MAIN_PATH } from 'constant';
+import { useCookies } from 'react-cookie';
 
 // Component : 게시물 작성 화면 (BoardWrite) 컴포넌트
 export default function BoardWrite() {
@@ -20,9 +21,8 @@ const {content, setContent} = useBoardStore();
 const {boardImageFileList, setBoardImageFileList} = useBoardStore();
 const {resetBoard} = useBoardStore(); 
 
-// State : 로그인 유저 상태 관리
-const { loginUser } = useLoginUserStore();
-
+// State : 쿠키 상태값 관리
+const [ cookies, setCookies ] = useCookies();
 // State : 게시물 이미지 미리보기 URL 상태
 const [imageUrls, setImageUrls] = useState<string[]>([]);
 
@@ -91,7 +91,8 @@ const onImageUploadButtonClickHandler = () => {
 
 // Effect : 첫 렌더 마운트시 실행할 함수
 useEffect(() => {
-  if (!loginUser) {
+  const accessToken = cookies.accessToken;
+  if (!accessToken) {
     navigate(MAIN_PATH());
     return
   }
@@ -129,13 +130,6 @@ useEffect(() => {
             </div>
           ))}
           
-          <div className='board-write-image-box' >
-            <img className='board-write-image' alt='newJeans1' src='https://file2.nocutnews.co.kr/newsroom/image/2023/01/21/202301210408091762_0.jpg' />
-            <div className='icon-button image-close'>
-              <div className='icon close-icon'></div>
-            </div>
-          </div>
-
          </div>
         </div>
       </div>

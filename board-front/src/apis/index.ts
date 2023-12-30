@@ -3,6 +3,8 @@ import { SignInRequestDTO, SignUpRequestDTO } from "./request/auth";
 import { SignInReqonseDTO, SignUpReqonseDTO } from "./response/auth";
 import { ResponseDto } from "./response";
 import { GetSignInUserResponseDTO } from './response/user';
+import { PostBoardRequestDto } from "./request/board";
+import { PostBoardResponseDto } from "./response/board";
 
 const DOMAIN = 'http://localhost:4000';
 
@@ -81,6 +83,20 @@ export const fileUploadRequest = async (data: FormData) => {
             return null;
         })
 
-        return result;
+        return result
+}
 
+const POST_BOARD_URL = () => `${API_DOMAIN}/board`;
+
+export const postBoardRequest = async (requestBody: PostBoardRequestDto, accessToken: string) => {
+    const result = await axios.post(POST_BOARD_URL(), requestBody, authorization(accessToken))
+        .then(response => {
+            const responseBody: PostBoardResponseDto = response.data;
+            return responseBody;
+        }).catch(error => {
+            if(!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        })
+        return result;
 }
