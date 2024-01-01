@@ -435,7 +435,7 @@ favoriteListItem[] 구조
 } 
 <hr />
 
-<h3>10. 좋아요 기능 (favorite) / Method : GET / API URL - /api/v1/board/{boardNumber}/favorite</h3>
+<h3>10. 좋아요 기능 (favorite) / Method : PUT / API URL - /api/v1/board/{boardNumber}/favorite</h3>
 
 <hr />
 - Header 
@@ -461,7 +461,31 @@ favoriteListItem[] 구조
 
 실패 (Failure)
 
-데이터 베이스 에러
+1. 유효성 검사 실패 
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "VF",
+    message : "Validation failed",
+} 
+
+2. 존재하지 않는 게시물
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NB",
+    message : "NO Existed Board Number",
+} 
+
+3. 존재하지 않는 유저
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "NU",
+    message : "NO Existed User..."
+} 
+
+3. 데이터 베이스 에러
 
 - HTTP status - 500 (Internal Server Error)
 {
