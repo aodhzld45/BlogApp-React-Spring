@@ -376,13 +376,14 @@ boardListItem[] 배열 구조 -
 
 성공 (Success)
 
-- HTTP status - 200 (ok)
+HTTP status - 200 (ok)
 {
     code: "SU",
     message : "Success",
     boardNumber : int,
     title : Stirng,
     content : String,
+    boardImageList : List<String>
     boardImage : String,
     writerEmail : String,
     writeDatetime : String,
