@@ -2,11 +2,15 @@ package com.seo.boardback.service.implement;
 
 import com.seo.boardback.dto.request.board.PostBoardRequestDTO;
 import com.seo.boardback.dto.response.ResponseDTO;
+import com.seo.boardback.dto.response.auth.SignUpResponseDTO;
 import com.seo.boardback.dto.response.board.GetBoardResponseDTO;
 import com.seo.boardback.dto.response.board.PostBoardResponseDTO;
+import com.seo.boardback.dto.response.board.PutFavoriteResponseDTO;
 import com.seo.boardback.entity.BoardEntity;
+import com.seo.boardback.entity.FavoriteEntity;
 import com.seo.boardback.entity.ImageEntity;
 import com.seo.boardback.repository.BoardRepository;
+import com.seo.boardback.repository.FavoriteRepository;
 import com.seo.boardback.repository.ImageRepository;
 import com.seo.boardback.repository.UserRepository;
 import com.seo.boardback.repository.resultSet.GetBoardResultSet;
@@ -24,6 +28,7 @@ public class BoardServiceImplement implements BoardService {
     private final BoardRepository boardRepository;
     private final ImageRepository imageRepository;
     private final UserRepository userRepository;
+    private final FavoriteRepository favoriteRepository;
 
     // 게시물 상세
     @Override
@@ -80,6 +85,42 @@ public class BoardServiceImplement implements BoardService {
         }
 
         return PostBoardResponseDTO.success();
+
+    }
+
+//  좋아요 기능
+    @Override
+    public ResponseEntity<? super PutFavoriteResponseDTO> PutFavorite(Integer boardNumber, String email) {
+       try {
+           // 만약 해당 이메일로 등록된 사용자가 존재하지 않는다면, 존재하지 않는 사용자로 간주하고 해당 응답을 반환
+           boolean existsByEmail = userRepository.existsByEmail(email);
+           if (!existsByEmail) return PutFavoriteResponseDTO.notExitedUser();
+
+           BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+           if (boardEntity == null) return PutFavoriteResponseDTO.notExistedBoard();
+
+           // 주어진 게시판 번호와 사용자 이메일에 대한 좋아요 정보를 데이터베이스에서 조회
+           FavoriteEntity favoriteEntity = favoriteRepository.findByBoardNumberAndUserEmail(boardNumber, email);
+           // 만약 조회한 즐겨찾기 정보가 없다면 (null), 새로운 FavoriteEntity 객체를 생성하고 데이터베이스에 저장
+           if (favoriteEntity == null){
+               favoriteEntity = new FavoriteEntity(email, boardNumber);
+               favoriteRepository.save(favoriteEntity);
+               boardEntity.increaseFavoriteCount();
+           }else {
+               // 조회한 좋아요 정보가 이미 존재한다면, 해당 정보를 데이터베이스에서 삭제
+               favoriteRepository.delete(favoriteEntity);
+               boardEntity.decreaseFavoriteCount();
+           }
+
+           boardRepository.save(boardEntity);
+
+
+       }catch (Exception e) {
+           e.printStackTrace();
+           return ResponseDTO.databaseError();
+       }
+
+        return PutFavoriteResponseDTO.success();
 
     }
 

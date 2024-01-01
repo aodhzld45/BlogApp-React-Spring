@@ -35,7 +35,7 @@ public class AuthServiceImplement implements AuthService {
         try {
 
             String email = dto.getEmail();
-            boolean existsByEmail = userRepository.existsByEmail(email);
+            boolean existsByEmail = userRepository.existsByEmail(email); // 변경된 부분
             if (existsByEmail) return SignUpResponseDTO.duplicateEmail();
 
             String nickname = dto.getNickname();

@@ -3,6 +3,7 @@ package com.seo.boardback.controller;
 import com.seo.boardback.dto.request.board.PostBoardRequestDTO;
 import com.seo.boardback.dto.response.board.GetBoardResponseDTO;
 import com.seo.boardback.dto.response.board.PostBoardResponseDTO;
+import com.seo.boardback.dto.response.board.PutFavoriteResponseDTO;
 import com.seo.boardback.service.BoardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,15 @@ public class BoardController {
             @AuthenticationPrincipal String email
             ) {
         ResponseEntity<? super PostBoardResponseDTO> response = boardService.postBoard(requestBody, email);
+        return response;
+    }
+
+    @PutMapping("/{boardNumber}/favorite")
+    public ResponseEntity<? super PutFavoriteResponseDTO> putFavorite(
+            @PathVariable("boardNumber") Integer boardNumber,
+            @AuthenticationPrincipal String email
+    ) {
+        ResponseEntity<? super PutFavoriteResponseDTO> response = boardService.PutFavorite(boardNumber, email);
         return response;
     }
 

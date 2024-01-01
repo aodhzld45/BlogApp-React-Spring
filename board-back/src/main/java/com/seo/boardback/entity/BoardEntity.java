@@ -48,8 +48,19 @@ public class BoardEntity {
         this.writerEmail = email;
     }
 
+    // 조회 수 증가
     public void increaseViewCount() {
         this.viewCount++;
+    }
+
+    // 좋아요 값 증가
+    public void increaseFavoriteCount() {
+        this.favoriteCount++;
+    }
+
+    // 좋아요 값 감소
+    public void decreaseFavoriteCount() {
+        this.favoriteCount--;
     }
 
 

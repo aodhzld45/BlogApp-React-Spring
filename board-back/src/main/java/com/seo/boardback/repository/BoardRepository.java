@@ -14,6 +14,7 @@ import com.seo.boardback.entity.BoardEntity;
 @Repository
 public interface BoardRepository extends JpaRepository<BoardEntity, Integer>{
 
+//    boolean existedByBoardNumber(Integer boardNumber);
     BoardEntity findByBoardNumber(Integer boardNumber);
     
 //  Native Query ?1은 매개변수로 오는것 중에 첫번째로 오는것을 적용한다는 뜻
