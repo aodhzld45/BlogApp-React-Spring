@@ -2,12 +2,14 @@ package com.seo.boardback.service.implement;
 
 import com.seo.boardback.dto.request.board.PostBoardRequestDTO;
 import com.seo.boardback.dto.response.ResponseDTO;
+import com.seo.boardback.dto.response.board.GetBoardResponseDTO;
 import com.seo.boardback.dto.response.board.PostBoardResponseDTO;
 import com.seo.boardback.entity.BoardEntity;
 import com.seo.boardback.entity.ImageEntity;
 import com.seo.boardback.repository.BoardRepository;
 import com.seo.boardback.repository.ImageRepository;
 import com.seo.boardback.repository.UserRepository;
+import com.seo.boardback.repository.resultSet.GetBoardResultSet;
 import com.seo.boardback.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,33 @@ public class BoardServiceImplement implements BoardService {
     private final ImageRepository imageRepository;
     private final UserRepository userRepository;
 
+    // 게시물 상세
+    @Override
+    public ResponseEntity<? super GetBoardResponseDTO> getBoard(Integer boardNumber) {
+
+        GetBoardResultSet resultSet = null;
+        List<ImageEntity> imageEntities = new ArrayList<>();
+
+        try {
+            resultSet = boardRepository.getBoard(boardNumber);
+            if (resultSet == null) return GetBoardResponseDTO.noExistedBoard();
+            imageEntities = imageRepository.findByBoardNumber(boardNumber);
+
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+//          조회수 증가
+            boardEntity.increaseViewCount();
+            boardRepository.save(boardEntity);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseDTO.databaseError();
+        }
+
+        return GetBoardResponseDTO.success(resultSet, imageEntities);
+
+    }
+
+    // 게시물 작성
     @Override
     public ResponseEntity<? super PostBoardResponseDTO> postBoard(PostBoardRequestDTO dto, String email) {
         try {
@@ -50,11 +79,7 @@ public class BoardServiceImplement implements BoardService {
             return ResponseDTO.databaseError();
         }
 
-
-
         return PostBoardResponseDTO.success();
-
-
 
     }
 
