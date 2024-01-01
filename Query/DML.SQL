@@ -117,13 +117,13 @@ LIMIT 10;
 
 -- 8. 상세 게시물 불러오기
 SELECT 
-    B.board_number AS board_number,
+    B.board_number AS boardNumber,
     B.title AS title,
     B.content AS content,
-    B.write_datetime AS write_datetime,
-    B.writer_email AS writer_email,
-    U.nickname AS nickname,
-    U.profile_image AS profile_image
+    B.write_datetime AS writeDatetime,
+    B.writer_email AS writerEmail,
+    U.nickname AS writerNickname,
+    U.profile_image AS writerProfileImage
 FROM board AS B
 INNER JOIN `user` AS U
 ON B.writer_email = U.email
