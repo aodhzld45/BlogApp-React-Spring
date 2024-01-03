@@ -2,6 +2,7 @@ package com.seo.boardback.controller;
 
 import com.seo.boardback.dto.request.board.PostBoardRequestDTO;
 import com.seo.boardback.dto.response.board.GetBoardResponseDTO;
+import com.seo.boardback.dto.response.board.GetFavoriteListResponseDTO;
 import com.seo.boardback.dto.response.board.PostBoardResponseDTO;
 import com.seo.boardback.dto.response.board.PutFavoriteResponseDTO;
 import com.seo.boardback.service.BoardService;
@@ -40,8 +41,17 @@ public class BoardController {
             @PathVariable("boardNumber") Integer boardNumber,
             @AuthenticationPrincipal String email
     ) {
-        ResponseEntity<? super PutFavoriteResponseDTO> response = boardService.PutFavorite(boardNumber, email);
+        ResponseEntity<? super PutFavoriteResponseDTO> response = boardService.putFavorite(boardNumber, email);
         return response;
     }
+
+    @GetMapping("/{boardNumber}/favorite-list")
+    public ResponseEntity<? super GetFavoriteListResponseDTO> getFavoriteList(
+            @PathVariable("boardNumber") Integer boardNumber
+    ){
+        ResponseEntity<? super GetFavoriteListResponseDTO> response = boardService.getFavoriteList(boardNumber);
+        return response;
+    }
+
 
 }

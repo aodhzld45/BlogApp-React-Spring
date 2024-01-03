@@ -4,6 +4,7 @@ import com.seo.boardback.dto.request.board.PostBoardRequestDTO;
 import com.seo.boardback.dto.response.ResponseDTO;
 import com.seo.boardback.dto.response.auth.SignUpResponseDTO;
 import com.seo.boardback.dto.response.board.GetBoardResponseDTO;
+import com.seo.boardback.dto.response.board.GetFavoriteListResponseDTO;
 import com.seo.boardback.dto.response.board.PostBoardResponseDTO;
 import com.seo.boardback.dto.response.board.PutFavoriteResponseDTO;
 import com.seo.boardback.entity.BoardEntity;
@@ -14,6 +15,7 @@ import com.seo.boardback.repository.FavoriteRepository;
 import com.seo.boardback.repository.ImageRepository;
 import com.seo.boardback.repository.UserRepository;
 import com.seo.boardback.repository.resultSet.GetBoardResultSet;
+import com.seo.boardback.repository.resultSet.GetFavoriteListResultSet;
 import com.seo.boardback.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -88,9 +90,9 @@ public class BoardServiceImplement implements BoardService {
 
     }
 
-//  좋아요 기능
+    //  좋아요 기능
     @Override
-    public ResponseEntity<? super PutFavoriteResponseDTO> PutFavorite(Integer boardNumber, String email) {
+    public ResponseEntity<? super PutFavoriteResponseDTO> putFavorite(Integer boardNumber, String email) {
        try {
            // 만약 해당 이메일로 등록된 사용자가 존재하지 않는다면, 존재하지 않는 사용자로 간주하고 해당 응답을 반환
            boolean existsByEmail = userRepository.existsByEmail(email);
@@ -111,17 +113,33 @@ public class BoardServiceImplement implements BoardService {
                favoriteRepository.delete(favoriteEntity);
                boardEntity.decreaseFavoriteCount();
            }
-
            boardRepository.save(boardEntity);
-
 
        }catch (Exception e) {
            e.printStackTrace();
            return ResponseDTO.databaseError();
        }
-
         return PutFavoriteResponseDTO.success();
+    }
 
+    //  좋아요 리스트 불러오기
+    @Override
+    public ResponseEntity<? super GetFavoriteListResponseDTO> getFavoriteList(Integer boardNumber) {
+        List<GetFavoriteListResultSet> resultSets = new ArrayList<>();
+
+        try{
+            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
+            if (!existedBoard) return GetFavoriteListResponseDTO.noExistedBoard();
+
+            resultSets = favoriteRepository.getFavoriteList(boardNumber);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseDTO.databaseError();
+
+        }
+
+        return GetFavoriteListResponseDTO.success(resultSets);
     }
 
 }
