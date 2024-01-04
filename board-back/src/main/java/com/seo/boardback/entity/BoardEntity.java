@@ -63,6 +63,9 @@ public class BoardEntity {
         this.favoriteCount--;
     }
 
+    // 댓글 수 증가
+    public void increaseCommentCount() {this.commentCount++;}
+
 
 
 }

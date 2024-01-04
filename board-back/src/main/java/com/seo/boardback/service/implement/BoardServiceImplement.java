@@ -1,19 +1,15 @@
 package com.seo.boardback.service.implement;
 
 import com.seo.boardback.dto.request.board.PostBoardRequestDTO;
+import com.seo.boardback.dto.request.board.PostCommentRequestDTO;
 import com.seo.boardback.dto.response.ResponseDTO;
 import com.seo.boardback.dto.response.auth.SignUpResponseDTO;
-import com.seo.boardback.dto.response.board.GetBoardResponseDTO;
-import com.seo.boardback.dto.response.board.GetFavoriteListResponseDTO;
-import com.seo.boardback.dto.response.board.PostBoardResponseDTO;
-import com.seo.boardback.dto.response.board.PutFavoriteResponseDTO;
+import com.seo.boardback.dto.response.board.*;
 import com.seo.boardback.entity.BoardEntity;
+import com.seo.boardback.entity.CommentEntity;
 import com.seo.boardback.entity.FavoriteEntity;
 import com.seo.boardback.entity.ImageEntity;
-import com.seo.boardback.repository.BoardRepository;
-import com.seo.boardback.repository.FavoriteRepository;
-import com.seo.boardback.repository.ImageRepository;
-import com.seo.boardback.repository.UserRepository;
+import com.seo.boardback.repository.*;
 import com.seo.boardback.repository.resultSet.GetBoardResultSet;
 import com.seo.boardback.repository.resultSet.GetFavoriteListResultSet;
 import com.seo.boardback.service.BoardService;
@@ -31,6 +27,7 @@ public class BoardServiceImplement implements BoardService {
     private final ImageRepository imageRepository;
     private final UserRepository userRepository;
     private final FavoriteRepository favoriteRepository;
+    private final CommentRepository commentRepository;
 
     // 게시물 상세
     @Override
@@ -89,6 +86,28 @@ public class BoardServiceImplement implements BoardService {
         return PostBoardResponseDTO.success();
 
     }
+    // 댓글 작성
+    @Override
+    public ResponseEntity<? super PostCommentResponseDTO> postComment(PostCommentRequestDTO dto, Integer boardNumber, String email) {
+        try {
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            if (boardEntity == null) return PostCommentResponseDTO.noExistBoard();
+
+            boolean existedUser = userRepository.existsByEmail(email);
+            if (!existedUser) return PostCommentResponseDTO.noExistUser();
+
+            CommentEntity commentEntity = new CommentEntity(dto, boardNumber, email);
+            boardEntity.increaseCommentCount();
+            commentRepository.save(commentEntity);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseDTO.databaseError();
+        }
+
+        return PostCommentResponseDTO.success();
+
+    }
 
     //  좋아요 기능
     @Override
@@ -121,6 +140,8 @@ public class BoardServiceImplement implements BoardService {
        }
         return PutFavoriteResponseDTO.success();
     }
+
+
 
     //  좋아요 리스트 불러오기
     @Override
