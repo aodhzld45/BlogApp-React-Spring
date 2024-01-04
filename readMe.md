@@ -555,7 +555,7 @@ commentListItem[] 배열 구조
 - request
 
 {
-    comment: String
+    content: String
 }
 
 - response
