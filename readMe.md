@@ -584,9 +584,17 @@ commentListItem[] 배열 구조
 {
     code : "NU",
     message : "NO Existed User..."
+}  
+
+3. 유효성 검사 실패 
+
+- HTTP status - 400 (Bad Request)
+{
+    code : "VF",
+    message : "Validation failed",
 } 
 
-3. 데이터 베이스 에러
+4. 데이터 베이스 에러
 
 - HTTP status - 500 (Internal Server Error)
 {
