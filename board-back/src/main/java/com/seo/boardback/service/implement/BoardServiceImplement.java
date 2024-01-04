@@ -3,7 +3,6 @@ package com.seo.boardback.service.implement;
 import com.seo.boardback.dto.request.board.PostBoardRequestDTO;
 import com.seo.boardback.dto.request.board.PostCommentRequestDTO;
 import com.seo.boardback.dto.response.ResponseDTO;
-import com.seo.boardback.dto.response.auth.SignUpResponseDTO;
 import com.seo.boardback.dto.response.board.*;
 import com.seo.boardback.entity.BoardEntity;
 import com.seo.boardback.entity.CommentEntity;

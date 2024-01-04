@@ -1,6 +1,5 @@
 package com.seo.boardback.repository;
 
-import com.seo.boardback.dto.response.board.GetFavoriteListResponseDTO;
 import com.seo.boardback.repository.resultSet.GetFavoriteListResultSet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
