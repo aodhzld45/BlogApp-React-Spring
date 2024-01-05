@@ -534,7 +534,16 @@ commentListItem[] 배열 구조
 
 실패 (Failure)
 
-데이터 베이스 에러
+1. 존재하지 않는 게시물
+
+HTTP status - 400 (Bad Request)
+{
+	code : "NB",
+	message : "NO Existed Board Number."
+}
+
+
+2. 데이터 베이스 에러
 
 - HTTP status - 500 (Internal Server Error)
 {
