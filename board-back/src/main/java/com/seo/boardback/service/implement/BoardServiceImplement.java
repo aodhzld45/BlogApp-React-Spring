@@ -10,6 +10,7 @@ import com.seo.boardback.entity.FavoriteEntity;
 import com.seo.boardback.entity.ImageEntity;
 import com.seo.boardback.repository.*;
 import com.seo.boardback.repository.resultSet.GetBoardResultSet;
+import com.seo.boardback.repository.resultSet.GetCommentListResultSet;
 import com.seo.boardback.repository.resultSet.GetFavoriteListResultSet;
 import com.seo.boardback.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -139,7 +140,24 @@ public class BoardServiceImplement implements BoardService {
        }
         return PutFavoriteResponseDTO.success();
     }
+    // 댓글 리스트 불러오기
+    @Override
+    public ResponseEntity<? super GetCommentListResponseDTO> getCommentList(Integer boardNumber) {
+        List<GetCommentListResultSet> resultSets = new ArrayList<>();
 
+        try {
+            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
+            if (!existedBoard) return GetCommentListResponseDTO.noExistedBoard();
+
+            resultSets = commentRepository.getCommentList(boardNumber);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseDTO.databaseError();
+        }
+        return GetCommentListResponseDTO.success(resultSets);
+    }
 
 
     //  좋아요 리스트 불러오기
