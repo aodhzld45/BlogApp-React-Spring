@@ -41,7 +41,7 @@ const onTestChangeHandler = () => {
 
     {/* favoriteListMock */}
     <div style={{display: 'flex', columnGap : '30px', rowGap : '20px' }}>
-      {favoriteListMock.map(favoriteListItems => <FavarioteItem favoriteListItme={favoriteListItems} />)}
+      {favoriteListMock.map(favoriteListItems => <FavarioteItem favoriteListItem ={favoriteListItems} />)}
     </div>
 
     {/* InputBox */}
